@@ -12,6 +12,26 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         _fixture = fixture;
     }
 
+    [Fact]
+    public void DifferentShapesTest()
+    {
+        var shapeInfos = new (Shape Shape, double ExpectedArea, double ExpectedPerimeter)[]
+        {
+            (new Circle(5), 78.539, 31.415)
+        };
+
+        foreach (var shapeInfo in shapeInfos)
+        {
+            var area = shapeInfo.Shape.CalculateArea();
+
+            Assert.True(Math.Abs(area - shapeInfo.ExpectedArea) < _fixture.Tolerance);
+
+            var perimeter = shapeInfo.Shape.CalculatePerimeter();
+
+            Assert.True(Math.Abs(perimeter - shapeInfo.ExpectedPerimeter) < _fixture.Tolerance);
+        }
+    }
+
     [Theory]
     [InlineData(5, 78.539)]
     [InlineData(3, 28.274)]
