@@ -27,6 +27,18 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
     }
 
     [Theory]
+    [InlineData(7, 43.982)]
+    [InlineData(3, 18.849)]
+    public void CirclePerimeterTheory(double radius, double expectedPerimeter)
+    {
+        var circle = new Circle(radius);
+
+        var perimeter = circle.CalculatePerimeter();
+
+        Assert.True(Math.Abs(perimeter - expectedPerimeter) < _fixture.Tolerance);
+    }
+
+    [Theory]
     [InlineData(0)]
     [InlineData(-5)]
     [InlineData(int.MinValue)]
