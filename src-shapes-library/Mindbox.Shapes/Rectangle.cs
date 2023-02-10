@@ -8,13 +8,9 @@ public class Rectangle : Shape
 
     public Rectangle(double a, double b)
     {
-        if (a <= 0)
+        if (a <= 0 || b <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(a));
-        }
-        else if (b <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(b));
+            throw new ArgumentException("All rectangle sides must be greater than or equal to 0");
         }
 
         A = a;
