@@ -12,7 +12,7 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         _fixture = fixture;
     }
 
-    [Fact]
+    [Fact(DisplayName = "Площадь и периметр без знани¤ типа фигуры в compile-time")]
     public void DifferentShapesTest()
     {
         var shapeInfos = new (Shape Shape, double ExpectedArea, double ExpectedPerimeter)[]
@@ -32,7 +32,7 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         }
     }
 
-    [Theory]
+    [Theory(DisplayName = "Circle: площадь")]
     [InlineData(5, 78.539)]
     [InlineData(3, 28.274)]
     [InlineData(4.11, 53.068)]
@@ -46,7 +46,7 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         Assert.True(Math.Abs(area - expectedArea) < _fixture.Tolerance);
     }
 
-    [Theory]
+    [Theory(DisplayName = "Circle: периметра")]
     [InlineData(7, 43.982)]
     [InlineData(3, 18.849)]
     public void CirclePerimeterTheory(double radius, double expectedPerimeter)
@@ -58,7 +58,7 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         Assert.True(Math.Abs(perimeter - expectedPerimeter) < _fixture.Tolerance);
     }
 
-    [Theory]
+    [Theory(DisplayName = "Circle: некорректный радиус")]
     [InlineData(0)]
     [InlineData(-5)]
     [InlineData(int.MinValue)]
