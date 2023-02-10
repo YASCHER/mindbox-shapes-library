@@ -33,6 +33,8 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         }
     }
 
+    #region Circle
+
     [Theory(DisplayName = "Circle: площадь")]
     [InlineData(5, 78.539)]
     [InlineData(3, 28.274)]
@@ -75,6 +77,10 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
             Assert.True(radius <= 0);
         }
     }
+
+    #endregion
+
+    #region Triangle
 
     [Theory(DisplayName = "Triangle: площадь")]
     [InlineData(3, 4.6, 3, 4.430)]
@@ -133,4 +139,6 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
             Assert.True(a >= b + c || b >= a + c || c >= a + b);
         }
     }
+
+    #endregion
 }
