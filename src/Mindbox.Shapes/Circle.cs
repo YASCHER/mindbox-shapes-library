@@ -2,19 +2,19 @@
 
 public class Circle : Shape
 {
-    public double Radius { get; }
+    public double R { get; }
 
-    public override double CalculateArea() => Math.PI * Radius * Radius;
+    public override double CalculateArea() => Math.PI * R * R;
 
-    public override double CalculatePerimeter() => 2 * Math.PI * Radius;
+    public override double CalculatePerimeter() => 2 * Math.PI * R;
 
-    public Circle(double radius)
+    public Circle(double r)
     {
-        if (radius <= 0)
+        if (r <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(radius));
+            throw new ArgumentOutOfRangeException(nameof(r));
         }
 
-        Radius = radius;
+        R = r;
     }
 }
