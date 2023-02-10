@@ -141,6 +141,18 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         }
     }
 
+    [Theory(DisplayName = "Triangle: прямоугольный треугольник")]
+    [InlineData(3, 4, 5, true)]
+    [InlineData(48, 55, 73, true)]
+    [InlineData(1.4142, 1, 1, true)]
+    [InlineData(10, 11, 2, false)]
+    public void TriangleIsRightTheory(double a, double b, double c, bool expectedIsRightTriangle)
+    {
+        var triangle = new Triangle(a, b, c);
+
+        Assert.True(triangle.IsRightTriangle() == expectedIsRightTriangle);
+    }
+
     #endregion
 
     #region Rectangle

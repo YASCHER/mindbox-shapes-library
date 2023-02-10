@@ -40,4 +40,29 @@ public class Triangle : Shape
     }
 
     public override double CalculatePerimeter() => A + B + C;
+
+    public bool IsRightTriangle(double tolerance = 0.001) 
+    {
+        bool DoublesIsEqual(double a, double b) => Math.Abs(a - b) < tolerance;
+
+        var isRightTriangle = false;
+
+        // Находим наибольшую сторону и
+        // проверяем справедлива ли теорема Пифагора
+
+        if (A > B && A > C)
+        {
+            isRightTriangle = DoublesIsEqual(A * A, B * B + C * C);
+        }
+        else if (B > A && B > C)
+        {
+            isRightTriangle = DoublesIsEqual(B * B, A * A + C * C);
+        }
+        else if (C > A && C > B)
+        {
+            isRightTriangle = DoublesIsEqual(C * C, A * A + B * B);
+        }
+
+        return isRightTriangle;
+    }
 }
