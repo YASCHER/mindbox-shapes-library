@@ -12,7 +12,7 @@ public class Circle : Shape
     {
         if (r <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(r));
+            throw new ArgumentException("A circle radius must be greater than or equal to 0");
         }
 
         R = r;

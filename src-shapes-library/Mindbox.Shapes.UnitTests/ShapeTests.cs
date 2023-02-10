@@ -73,7 +73,7 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         {
             var circle = new Circle(radius);
         }
-        catch (ArgumentOutOfRangeException)
+        catch (ArgumentException)
         {
             Assert.True(radius <= 0);
         }
@@ -118,7 +118,7 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         {
             var triangle = new Triangle(a, b, c);
         }
-        catch (ArgumentOutOfRangeException)
+        catch (ArgumentException)
         {
             Assert.True(a <= 0 || b <= 0 || c <= 0);
         }
@@ -191,7 +191,7 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         {
             var rectangle = new Rectangle(a, b);
         }
-        catch (ArgumentOutOfRangeException)
+        catch (ArgumentException)
         {
             Assert.True(a <= 0 || b <= 0);
         }

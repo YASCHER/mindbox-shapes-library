@@ -10,17 +10,9 @@ public class Triangle : Shape
 
     public Triangle(double a, double b, double c)
     {
-        if (a <= 0)
+        if (a <= 0 || b <= 0 || c <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(a));
-        }
-        else if (b <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(b));
-        }
-        else if (c <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(c));
+            throw new ArgumentException("All triangle sides must be greater than or equal to 0");
         }
         else if (a >= b + c || b >= a + c || c >= a + b)
         {
