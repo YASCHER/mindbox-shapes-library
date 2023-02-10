@@ -18,7 +18,8 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         var shapeInfos = new (Shape Shape, double ExpectedArea, double ExpectedPerimeter)[]
         {
             (new Circle(5), 78.539, 31.415),
-            (new Triangle(3, 4, 5), 6, 12)
+            (new Triangle(3, 4, 5), 6, 12),
+            (new Rectangle(10, 3), 30, 26)
         };
 
         foreach (var shapeInfo in shapeInfos)
@@ -137,6 +138,50 @@ public class ShapeTests : IClassFixture<ShapeTestsFixture>
         catch (ArgumentException ex) when (ex.Message == "A triangle with specified sides does not exist")
         {
             Assert.True(a >= b + c || b >= a + c || c >= a + b);
+        }
+    }
+
+    #endregion
+
+    #region Rectangle
+
+    [Theory(DisplayName = "Rectangle: площадь")]
+    [InlineData(5, 5, 25)]
+    [InlineData(5.33, 3, 15.99)]
+    public void RectangleAreaTheory(double a, double b, double expectedArea)
+    {
+        var rectangle = new Rectangle(a, b);
+
+        var area = rectangle.CalculateArea();
+
+        Assert.True(Math.Abs(area - expectedArea) < _fixture.Tolerance);
+    }
+
+    [Theory(DisplayName = "Rectangle: периметр")]
+    [InlineData(7, 7, 28)]
+    [InlineData(3, 4.6, 15.2)]
+    public void RectanglePerimeterTheory(double a, double b, double expectedPerimeter)
+    {
+        var rectangle = new Rectangle(a, b);
+
+        var perimeter = rectangle.CalculatePerimeter();
+
+        Assert.True(Math.Abs(perimeter - expectedPerimeter) < _fixture.Tolerance);
+    }
+
+    [Theory(DisplayName = "Rectangle: некорректные длины сторон")]
+    [InlineData(92, 0)]
+    [InlineData(4, -0.5)]
+    [InlineData(12, int.MinValue)]
+    public void RectangleInvalidSidesTheory(double a, double b)
+    {
+        try
+        {
+            var rectangle = new Rectangle(a, b);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(a <= 0 || b <= 0);
         }
     }
 
